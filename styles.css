@@ -1,0 +1,38 @@
+.calculator{
+    display: flex;
+    width: 500px;
+    margin: auto;
+    height: 700px;
+    flex-direction: column;
+    border: 2px solid black;
+
+}
+
+#display {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+#display div {
+    font-size: 80px;
+    
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 3;
+}
+
+.row {
+    display: flex;
+    flex-grow: 1;
+}
+
+button {
+    flex-grow: 1;
+    width: 100px;
+}
+
