@@ -10,9 +10,10 @@
 
 #display {
     display: flex;
-    flex-grow: 1;
+    align-items: center;
+    height: 150px;
     justify-content: flex-end;
-    overflow: hidden;
+    overflow: hidden; 
 }
 
 #display div {
@@ -23,7 +24,7 @@
 .buttons {
     display: flex;
     flex-direction: column;
-    flex-grow: 3;
+    flex-grow: 1;
 }
 
 .row {
