@@ -106,6 +106,14 @@ Btn3.addEventListener("click", () => {
     displayValue += "3";
 });
 
+const Btn0 = document.getElementById("0");
+Btn0.addEventListener("click", () => {
+    let div = document.createElement("div");
+    div.textContent = "0";
+    display.appendChild(div);
+    displayValue += "0";
+});
+
 const AC = document.getElementById("AC");
 AC.addEventListener("click", () => {
     while (display.hasChildNodes){
