@@ -95,6 +95,7 @@ decimal.addEventListener("click", () => {
 del.addEventListener("click", () => {
     handleDelete();
     currentDisplay.textContent = currentValue;
+    console.log(currentValue);
 });
 
 function handleNumber(num){
@@ -128,7 +129,7 @@ function handleEqual(){
         return;
     }
     result = round(result);
-    currentValue = result;
+    currentValue = result.toString();
     previousValue = "";
 }
 
