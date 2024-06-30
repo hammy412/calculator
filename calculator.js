@@ -35,6 +35,7 @@ function operate(a, op, b){
 let clear = document.getElementById("AC");
 let equal = document.getElementById("=");
 let decimal = document.getElementById(".");
+let del = document.getElementById("delete");
 
 let numbers = document.querySelectorAll(".num");
 let operators = document.querySelectorAll(".operator");
@@ -80,6 +81,8 @@ decimal.addEventListener("click", () => {
     currentDisplay.textContent = currentValue;
 });
 
+
+
 function handleNumber(num){
     if (currentValue.length < 15){
         currentValue += num;
@@ -87,9 +90,17 @@ function handleNumber(num){
 }
 
 function handleOperator(op){
-    operator = op;
-    previousValue = currentValue;
-    currentValue = "";
+    if (previousValue === ""){
+        operator = op;
+        previousValue = currentValue;
+        currentValue = "";
+    } else {
+        let result = operate(previousValue, operator, currentValue);
+        result = round(result);
+        operator = op;
+        previousValue = result;
+        currentValue = "";
+    }
 }
 
 function handleEqual(){
