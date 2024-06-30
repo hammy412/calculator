@@ -1,19 +1,27 @@
+body {
+    background-color: #CAD6EC;
+}
+
 .calculator {
     display: flex;
+    background-color: #A9A9A9;
     width: 500px;
     margin: auto;
     height: 700px;
     flex-direction: column;
     border: 2px solid black;
-
+    border-radius: 25px
 }
 
 #display {
     display: flex;
+    background-color: black;
     flex-direction: column;
     height: 150px;
     border: 2px solid black;
     padding-right: 10px;
+    margin: 20px;
+    border-radius: 25px
 }
 
 #current {
@@ -22,6 +30,7 @@
     align-items: center;
     flex-grow: 3;
     font-size: 50px;
+    color: white;
 }
 
 #previous {
@@ -30,16 +39,22 @@
     align-items: center;
     flex-grow: 1;
     font-size: 25px;
+    color: white;
 }
 
 .buttons {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    padding: 20px;
     flex-grow: 1;
+    border-top: 1px solid black;
+    margin-top: 20px;
 }
 
 .row {
     display: flex;
+    gap: 10px;
     flex-grow: 1;
 }
 
@@ -47,5 +62,21 @@ button {
     flex-grow: 1;
     width: 100px;
     font-size: large;
+}
+
+.num {
+    
+}
+
+.operator {
+    background-color: chocolate;
+}
+
+.equal {
+    background-color: limegreen;
+}
+
+.clear {
+    background-color: #ED2939;
 }
 
