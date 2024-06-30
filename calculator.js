@@ -14,11 +14,13 @@ function divide(a, b){
     return a / b;
 }
 
-let firstNum = "";
+let previousValue = "";
 let operator = "";
-let secondNum = "";
+let currentValue = "";
 
 function operate(a, op, b){
+    a = parseFloat(a);
+    b = parseFloat(b);
     if (op === "+"){
         return add(a,b);
     } else if (op === "-"){
@@ -30,51 +32,64 @@ function operate(a, op, b){
     }
 }
 
-const display = document.getElementById("display");
+let clear = document.getElementById("AC");
+let equal = document.getElementById("=");
 
-let displayValue = ""; 
+let numbers = document.querySelectorAll(".num");
+let operators = document.querySelectorAll(".operator");
 
-function updateDisplay(val){
-    let div = document.createElement("div");
-    div.textContent = val;
-    display.appendChild(div);
-    displayValue += val;
-}
+let currentDisplay = document.getElementById("current");
+let previousDisplay = document.getElementById("previous");
 
-let buttonsArray = document.querySelectorAll(".num");
-buttonsArray.forEach((button) => {
-    button.addEventListener("click", () => {
-        updateDisplay(button.textContent);
+numbers.forEach((number) => number.addEventListener("click", () => {
+    handleNumber(number.textContent);
+    currentDisplay.textContent = currentValue;
+}));
+
+operators.forEach((operator) => {
+    operator.addEventListener("click", () => {
+        handleOperator(operator.textContent);
+        previousDisplay.textContent = previousValue + " " + operator.textContent;
+        currentDisplay.textContent = currentValue;
     });
 });
 
-
-const BtnDec = document.getElementById(".");
-BtnDec.addEventListener("click", () => {
-    updateDisplay(".");
+clear.addEventListener("click", () => {
+    previousValue = "";
+    currentValue = "";
+    operator = "";
+    currentDisplay.textContent = "";
+    previousDisplay.textContent = "";
 });
 
-function clear(){
-    while (display.hasChildNodes){
-        display.removeChild(display.lastChild);
+equal.addEventListener("click", () => {
+    handleEqual();
+    previousDisplay.textContent = "";
+    currentDisplay.textContent = currentValue;
+});
+
+function handleNumber(num){
+    if (currentValue.length < 15){
+        currentValue += num;
     }
-    displayValue = "";
-    firstNum = "";
-    operator = "";
-    secondNum = "";
 }
 
-const AC = document.getElementById("AC");
-AC.addEventListener("click", clear);
+function handleOperator(op){
+    operator = op;
+    previousValue = currentValue;
+    currentValue = "";
+}
 
-const BtnAdd = document.getElementById("+");
-BtnAdd.addEventListener("click", () => {
-    
-});
+function handleEqual(){
+    let result = operate(previousValue, operator, currentValue);
+    result = round(result);
+    currentValue = result;
+}
 
-const BtnEq = document.getElementById("=");
-BtnEq.addEventListener("click", () => {
+function round(num){
+    return Math.round(num * 1000) / 1000;
+}
 
-});
+
 
 

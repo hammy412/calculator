@@ -1,4 +1,4 @@
-.calculator{
+.calculator {
     display: flex;
     width: 500px;
     margin: auto;
@@ -10,17 +10,26 @@
 
 #display {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     height: 150px;
-    justify-content: flex-end;
-    overflow: hidden; 
     border: 2px solid black;
-    padding-right: 20px;
+    padding-right: 10px;
 }
 
-#display div {
-    font-size: 85px;
-    
+#current {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 3;
+    font-size: 50px;
+}
+
+#previous {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
+    font-size: 25px;
 }
 
 .buttons {
@@ -37,5 +46,6 @@
 button {
     flex-grow: 1;
     width: 100px;
+    font-size: large;
 }
 
