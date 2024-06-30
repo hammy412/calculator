@@ -61,12 +61,10 @@ body {
 button {
     flex-grow: 1;
     width: 100px;
-    font-size: large;
+    font-size: 30px;
+    color: black;
 }
 
-.num {
-    
-}
 
 .operator {
     background-color: chocolate;
