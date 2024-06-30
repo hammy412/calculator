@@ -34,6 +34,7 @@ function operate(a, op, b){
 
 let clear = document.getElementById("AC");
 let equal = document.getElementById("=");
+let decimal = document.getElementById(".");
 
 let numbers = document.querySelectorAll(".num");
 let operators = document.querySelectorAll(".operator");
@@ -48,6 +49,9 @@ numbers.forEach((number) => number.addEventListener("click", () => {
 
 operators.forEach((operator) => {
     operator.addEventListener("click", () => {
+        if (currentValue === ""){
+            return;
+        }
         handleOperator(operator.textContent);
         previousDisplay.textContent = previousValue + " " + operator.textContent;
         currentDisplay.textContent = currentValue;
@@ -63,8 +67,16 @@ clear.addEventListener("click", () => {
 });
 
 equal.addEventListener("click", () => {
+    if (previousValue === "" || currentValue === ""){
+        return;
+    }
     handleEqual();
     previousDisplay.textContent = "";
+    currentDisplay.textContent = currentValue;
+});
+
+decimal.addEventListener("click", () => {
+    handleDecimal();
     currentDisplay.textContent = currentValue;
 });
 
@@ -84,10 +96,17 @@ function handleEqual(){
     let result = operate(previousValue, operator, currentValue);
     result = round(result);
     currentValue = result;
+    previousValue = "";
 }
 
 function round(num){
     return Math.round(num * 1000) / 1000;
+}
+
+function handleDecimal(){
+    if (!currentValue.includes(".")){
+        currentValue += ".";
+    }
 }
 
 
