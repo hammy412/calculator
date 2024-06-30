@@ -18,6 +18,8 @@ let previousValue = "";
 let operator = "";
 let currentValue = "";
 
+let error = false;
+
 function operate(a, op, b){
     a = parseFloat(a);
     b = parseFloat(b);
@@ -54,6 +56,10 @@ operators.forEach((operator) => {
             return;
         }
         handleOperator(operator.textContent);
+        if (error){
+            error = false;
+            return;
+        }
         previousDisplay.textContent = previousValue + " " + operator.textContent;
         currentDisplay.textContent = currentValue;
     });
@@ -72,6 +78,10 @@ equal.addEventListener("click", () => {
         return;
     }
     handleEqual();
+    if (error){
+        error = false;
+        return;
+    }
     previousDisplay.textContent = "";
     currentDisplay.textContent = currentValue;
 });
@@ -82,6 +92,9 @@ decimal.addEventListener("click", () => {
 });
 
 
+del.addEventListener("click", () => {
+    handleDelete();
+});
 
 function handleNumber(num){
     if (currentValue.length < 15){
@@ -96,6 +109,10 @@ function handleOperator(op){
         currentValue = "";
     } else {
         let result = operate(previousValue, operator, currentValue);
+        if (handleError(result)){
+            error = true;
+            return;
+        }
         result = round(result);
         operator = op;
         previousValue = result;
@@ -105,6 +122,10 @@ function handleOperator(op){
 
 function handleEqual(){
     let result = operate(previousValue, operator, currentValue);
+    if (handleError(result)){
+        error = true;
+        return;
+    }
     result = round(result);
     currentValue = result;
     previousValue = "";
@@ -118,6 +139,22 @@ function handleDecimal(){
     if (!currentValue.includes(".")){
         currentValue += ".";
     }
+}
+
+function handleError(num){
+    if (isNaN(num) || num === Infinity){
+        previousValue = "";
+        currentValue = "";
+        operator = "";
+        previousDisplay.textContent = "";
+        currentDisplay.textContent = "Error";
+        return true;
+    }
+    return false; 
+}
+
+function handleDelete(){
+
 }
 
 
