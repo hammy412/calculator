@@ -94,6 +94,7 @@ decimal.addEventListener("click", () => {
 
 del.addEventListener("click", () => {
     handleDelete();
+    currentDisplay.textContent = currentValue;
 });
 
 function handleNumber(num){
@@ -154,8 +155,11 @@ function handleError(num){
 }
 
 function handleDelete(){
-
+    if (currentValue !== ""){
+        currentValue = currentValue.slice(0, -1);
+    }
 }
+
 
 
 
